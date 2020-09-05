@@ -16,6 +16,10 @@ If you have only one monitor or want only main monitor to change you can omit th
 
 would set the first or main monitor to 150 scale. 
 
+**Release** 
+
+Get the release build and a sample ahk script with hotkey example from here https://github.com/imniko/SetDPI/releases/tag/v0.1
+
 **Credits** 
 
 The whole credits goes to @lihas of this project, https://github.com/lihas/windows-DPI-scaling-sample it was not possible without his findings. 
