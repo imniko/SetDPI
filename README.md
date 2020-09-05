@@ -18,7 +18,7 @@ would set the first or main monitor to 150 scale.
 
 **Release** 
 
-Get the release build and a sample ahk script with hotkey example from here https://github.com/imniko/SetDPI/releases/tag/v0.1
+Get the release build and a sample ahk script with hotkey example from here https://github.com/imniko/SetDPI/releases/
 
 **Credits** 
 
