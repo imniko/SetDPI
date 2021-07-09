@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Downloads\Programs\windows-DPI-scaling-sample-master\windows-DPI-scaling-sample-master\DPIHelper\DpiHelper.cpp" />
+    <ClCompile Include="DpiHelper.cpp" />
     <ClCompile Include="SetDpi.cpp" />
   </ItemGroup>
   <ItemGroup>

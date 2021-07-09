@@ -18,7 +18,7 @@
     <ClCompile Include="SetDpi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Downloads\Programs\windows-DPI-scaling-sample-master\windows-DPI-scaling-sample-master\DPIHelper\DpiHelper.cpp">
+    <ClCompile Include="DpiHelper.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
