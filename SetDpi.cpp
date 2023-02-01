@@ -161,9 +161,9 @@ int main(int argc, char *argv[])
     }
 
     auto displayDataCache = GetDisplayData();
-    if (displayIndex < 0 || displayDataCache.size() <= displayIndex)
+    if (displayIndex < 1 || displayDataCache.size() < displayIndex)
     {
-        if (DPIFound(displayIndex) && 0 <= dpiToSet && dpiToSet < displayDataCache.size())
+        if (DPIFound(displayIndex) && 1 <= dpiToSet && dpiToSet <= displayDataCache.size())
         {
             cout << "Please provide the scale as first and the index as second argument, programm will continue for legacy purposes\n";
             auto t = dpiToSet;
@@ -172,7 +172,6 @@ int main(int argc, char *argv[])
         }
         else
         {
-            cout << DPIFound(displayIndex) << " " << (0 <= dpiToSet) << " " << (dpiToSet < displayDataCache.size());
             cout << "Invalid Monitor ID: " << displayIndex;
             return 0;
         }
