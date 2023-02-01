@@ -1,25 +1,31 @@
-This is a sample and simple C++ console project to change windows Scale and Layout aka DPI scaling from command line paremeters. It can work on single and multi-monitor setup.
+# SetDPI
 
-**How to use** 
+This is a sample and simple C++ console project to change windows Scale and Layout aka DPI scaling from command line parameters. It can work on single and multi-monitor setup.
 
-It takes up to 2 parameters, first being the monitor ID, which you get from windows display settings, if you click identify it shows you the no. 
+## How to use
 
-`SetDPI.exe [monitor no] [DPI scale value]` 
+It takes up to 2 parameters, first being the scale in percent. The second argument is the monitor index, which you get from windows display settings, if you click identify it shows you the index.
 
-To set 2nd monitor to a scale value of 250, 
+`SetDPI.exe [DPI scale value] [monitor index]`
 
-`SetDPI.exe 2 250` 
+If you have only one monitor or want only main monitor to change you can omit the monitor index.
 
-If you have only one monitor or want only main monitor to change you can omit the first parameter, so 
+To get the current scale of a monitor, replace the scale argument with `get` to print the current scaling. For automation with `value` only the scale is printed.
 
-`SetDPI.exe 150`
+## Examples
 
-would set the first or main monitor to 150 scale. 
+- To set 2nd monitor to a scale value of 250
+	- `SetDPI.exe 250 2`
+- To set main monitor to a scale value of 125
+	- `SetDPI.exe 125`
+- To get the scale of the 2nd monitor
+	- `SetDPI.exe get 2` prints `Current Resolution: 250`
+	- `SetDPI.exe value 2` prints `250`
 
-**Release** 
+## Release
 
-Get the release build and a sample ahk script with hotkey example from here https://github.com/imniko/SetDPI/releases/
+Get the release build and a sample AutoHotkey script with hotkey example from here https://github.com/imniko/SetDPI/releases/
 
-**Credits** 
+## Credits
 
-The whole credits goes to @lihas of this project, https://github.com/lihas/windows-DPI-scaling-sample it was not possible without his findings. 
+The whole credits go to @lihas of this project, https://github.com/lihas/windows-DPI-scaling-sample it was not possible without his findings.
