@@ -24,30 +24,6 @@ int GetRecommendedDPIScaling()
     return -1;
 }
 
-void SetDpiScaling(int percentScaleToSet)
-{
-    int recommendedDpiScale = GetRecommendedDPIScaling();
-
-    if (recommendedDpiScale > 0)
-    {
-        int index = 0, recIndex = 0, setIndex = 0;
-        for (const auto& scale : DpiVals)
-        {
-            if (recommendedDpiScale == scale)
-            {
-                recIndex = index;
-            }
-            if (percentScaleToSet == scale)
-            {
-                setIndex = index;
-            }
-            index++;
-        }
-
-        int relativeIndex = setIndex - recIndex;
-        SystemParametersInfo(SPI_SETLOGICALDPIOVERRIDE, relativeIndex, (LPVOID)0, 1);
-    }
-}
 //to store display info along with corresponding list item
 struct DisplayData {
     LUID m_adapterId;
@@ -72,7 +48,8 @@ std::vector<DisplayData> GetDisplayData()
         cout << "DpiHelper::GetPathsAndModes() failed\n";
     }
     displayDataCache.resize(pathsV.size());
-    for (int idx = 0; const auto &path : pathsV)
+    int idx = 0;
+    for (const auto &path : pathsV)
     {
         //get display name
         auto adapterLUID = path.targetInfo.adapterId;
@@ -102,7 +79,7 @@ std::vector<DisplayData> GetDisplayData()
 
             displayDataCache[idx] = dd;
         }
-        idx += 1;
+        idx++;
     }
     return displayDataCache;
 }
@@ -165,7 +142,7 @@ int main(int argc, char *argv[])
     {
         if (DPIFound(displayIndex) && 1 <= dpiToSet && dpiToSet <= displayDataCache.size())
         {
-            cout << "Please provide the scale as first and the index as second argument, programm will continue for legacy purposes\n";
+            cout << "Please provide the scale as first and the index as second argument, program will continue for legacy purposes\n";
             auto t = dpiToSet;
             dpiToSet = displayIndex;
             displayIndex = t;
@@ -200,5 +177,20 @@ int main(int argc, char *argv[])
     {
         cout << "DpiHelper::SetDPIScaling() failed";
         return 0;
+    }
+    else
+    {
+        if (displayIndex == 0)
+        {
+            HKEY hKey;
+            LPCWSTR sKeyPath;
+            DWORD value = static_cast<DWORD>(int(dpiToSet * 0.96));
+            int iResult;
+            sKeyPath = L"Control Panel\\Desktop\\WindowMetrics\\";
+            iResult = RegOpenKeyEx(HKEY_CURRENT_USER, sKeyPath, NULL, KEY_ALL_ACCESS, &hKey);
+            iResult = RegSetValueEx(hKey, L"AppliedDPI", NULL, REG_DWORD, (const BYTE*)&value, sizeof(value));
+            RegCloseKey(hKey);
+            return 0;
+        }
     }
 }
